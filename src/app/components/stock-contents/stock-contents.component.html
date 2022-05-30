@@ -1,0 +1,5 @@
+<app-search-stock (onSearch)="onSearch($event)"></app-search-stock>
+<app-stock-basic *ngIf="stockBasic != null"
+    [stockBasic]="stockBasic"></app-stock-basic>
+<app-stock-real-data *ngIf="stockBasic != null" 
+    [tsCode]="stockBasic.tsCode"></app-stock-real-data>

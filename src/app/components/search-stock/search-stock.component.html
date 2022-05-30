@@ -1,0 +1,12 @@
+<form class="search-form" (ngSubmit)="onSubmit()">
+    <div class="form-control">
+        <input 
+        type="text"
+        name="text"
+        id="text"
+        [(ngModel)]="text"
+        class="input-text"
+        />
+        <input type="submit" value="查询" class="btn btn-green" />
+    </div>
+</form>
