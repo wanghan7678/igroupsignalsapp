@@ -1,0 +1,23 @@
+.show-red
+{
+    color: red;
+}
+.show-green
+{
+    color: yellowgreen;
+}
+.show-black
+{
+    color: black;
+}
+
+.table1
+{
+    width: 480px;
+    font-size: small;
+    table-layout: fixed;
+}
+.table1 .td
+{
+    width: 60px;
+}

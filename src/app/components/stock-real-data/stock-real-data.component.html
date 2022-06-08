@@ -1,5 +1,41 @@
 <div class="info-part">
-    <h4>实时数据：</h4>
-    <h4>{{pageStockRealTime.name}}</h4>
-    <p>买1: {{pageStockRealTime.bid1Price}}</p>
+    <div><p>{{pageStockRealTime.name}}({{pageStockRealTime.code}})</p></div>
+    <div><hr></div>
+    <div>
+        <table class="table1">
+            <tr>
+                <td colspan="2" align="center" rowspan="2" class="show-{{colorName}}"><h2>{{pageStockRealTime.nowPrice}}</h2></td>
+                <td colspan="2"  class="show-{{colorName}}">{{ (pageStockRealTime.nowPrice - pageStockRealTime.lastClose).toFixed(2)}}</td>
+                <td>今开：</td>
+                <td>{{pageStockRealTime.todayOpen}}</td>
+                <td>成交量：</td>
+                <td>{{(pageStockRealTime.tradedShares / 1000000).toFixed(2)}}</td>
+            </tr>
+            <tr>
+                <td colspan="2"  class="show-{{colorName}}">
+                    {{ (100*(pageStockRealTime.nowPrice - pageStockRealTime.lastClose)/pageStockRealTime.lastClose).toFixed(2)}}%
+                </td>
+                <td>最高：</td>
+                <td>{{pageStockRealTime.todayHigh}}</td>
+                <td>成交额：</td>
+                <td>{{(pageStockRealTime.tradedAmounts / 1000000).toFixed(2)}}</td>
+            </tr>
+            <tr>
+                <td colspan="4"></td>
+                <td>最低：</td>
+                <td>{{pageStockRealTime.todayLow}}</td>
+                <td> </td>
+                <td> </td>
+            </tr>
+            <tr>
+                <td align="center" colspan="4">{{pageStockRealTime.date}}  {{pageStockRealTime.time}}</td>
+                <td>昨低：</td>
+                <td>{{pageStockRealTime.lastClose}}</td>
+                <td> </td>
+                <td> </td>
+            </tr>
+        </table>
+    </div>
+    <div><hr></div>
+
 </div>

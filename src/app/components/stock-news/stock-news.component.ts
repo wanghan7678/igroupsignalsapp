@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NewsLink } from 'src/app/model/news-link.model';
+import { StockNewsService } from 'src/app/service/stock-news.service';
 
 @Component({
   selector: 'app-stock-news',
@@ -10,7 +11,8 @@ export class StockNewsComponent implements OnInit {
 
   private tsCodeVal: string = "";
 
-  private newsLinks: NewsLink[] = [];
+  newsLinks: NewsLink[] = [];
+
 
 
   @Input()
@@ -25,7 +27,7 @@ export class StockNewsComponent implements OnInit {
     return this.tsCodeVal;
   }
 
-  constructor() { }
+  constructor(private service: StockNewsService) { }
 
   ngOnInit(): void 
   {
@@ -33,7 +35,7 @@ export class StockNewsComponent implements OnInit {
 
   getByTsCode(code: string)
   {
-    
+    this.service.getNewsData(code).subscribe(results => this.newsLinks = results);
   }
 
 }

@@ -10,20 +10,44 @@ import { Subject } from 'rxjs';
 })
 export class StockRealDataComponent implements OnInit {
 
-  @Input()
-  tsCode!: string;
+  private tsCodeVal: string = "";
+
+  private realTimeFresh: boolean = false;
+
+
+  colorName: string = "black";
 
   pageStockRealTime!: PageStockRealTime;
 
+  @Input()
+  set tsCode(val: string)
+  {
+    this.tsCodeVal = val;
+    this.getByTsCode(this.tsCodeVal);
+    this.colorName = this.getColor();
+  }
 
-  constructor(private service: StockRealTimeService) { }
+  get tsCode()
+  {
+    return this.tsCodeVal;
+  }
+
+
+  constructor(private service: StockRealTimeService) 
+  { 
+  }
 
   ngOnInit(): void 
   {
     if (this.tsCode != null)
     {
-      this.getByTsCode(this.tsCode);
-      this.service.RefreshRequired.subscribe(response => {this.getByTsCode(this.tsCode)})
+      this.getByTsCode(this.tsCodeVal);
+      this.colorName = this.getColor();
+      if (this.checkIfRealTimeFresh())
+      {
+          this.service.RefreshRequired.subscribe(response => {this.getByTsCode(this.tsCodeVal)});
+      }
+      
     }
     
   }
@@ -33,4 +57,25 @@ export class StockRealDataComponent implements OnInit {
     this.service.getRealTimeData(code).subscribe(result => this.pageStockRealTime = result);
   }
 
+  checkIfRealTimeFresh():boolean
+  {
+    if (this.checkIfRealTimeFresh != null)
+    {
+        this.realTimeFresh = false;
+    }
+    return this.realTimeFresh;
+  }
+
+  getColor() : string
+  {
+    if (this.pageStockRealTime.nowPrice > this.pageStockRealTime.lastClose)
+    {
+      return "red";
+    }
+    else
+    {
+      return "green";
+    }
+    
+  }
 }
