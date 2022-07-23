@@ -16,6 +16,7 @@ import { StockChartsComponent } from './components/stock-charts/stock-charts.com
 import { StockContentsComponent } from './components/stock-contents/stock-contents.component';
 import { StockChartComponent } from './components/stock-chart/stock-chart.component';
 import { StockRealDataComponent } from './components/stock-real-data/stock-real-data.component';
+import { StockSignalsComponent } from './components/stock-signals/stock-signals.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { StockRealDataComponent } from './components/stock-real-data/stock-real-
     StockChartsComponent,
     StockContentsComponent,
     StockChartComponent,
-    StockRealDataComponent
+    StockRealDataComponent,
+    StockSignalsComponent
   ],
   imports: [
     BrowserModule,

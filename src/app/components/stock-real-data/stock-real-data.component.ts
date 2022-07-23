@@ -17,6 +17,8 @@ export class StockRealDataComponent implements OnInit {
 
   colorName: string = "black";
 
+  sinaStockCode: string = "";
+
   pageStockRealTime!: PageStockRealTime;
 
   @Input()
@@ -24,7 +26,6 @@ export class StockRealDataComponent implements OnInit {
   {
     this.tsCodeVal = val;
     this.getByTsCode(this.tsCodeVal);
-    this.colorName = this.getColor();
   }
 
   get tsCode()
@@ -41,8 +42,6 @@ export class StockRealDataComponent implements OnInit {
   {
     if (this.tsCode != null)
     {
-      this.getByTsCode(this.tsCodeVal);
-      this.colorName = this.getColor();
       if (this.checkIfRealTimeFresh())
       {
           this.service.RefreshRequired.subscribe(response => {this.getByTsCode(this.tsCodeVal)});
@@ -54,7 +53,11 @@ export class StockRealDataComponent implements OnInit {
 
   getByTsCode(code: string)
   {
-    this.service.getRealTimeData(code).subscribe(result => this.pageStockRealTime = result);
+    this.service.getRealTimeData(code).subscribe(result => {
+      this.pageStockRealTime = result;
+      this.colorName = this.getColor();
+      this.sinaStockCode = this.transferTsCode();
+      });
   }
 
   checkIfRealTimeFresh():boolean
@@ -77,5 +80,11 @@ export class StockRealDataComponent implements OnInit {
       return "green";
     }
     
+  }
+
+  transferTsCode() : string
+  {
+    var symbols = this.tsCode.split(".");
+    return symbols[1].toLocaleLowerCase() + symbols[0]
   }
 }

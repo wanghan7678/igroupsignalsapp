@@ -21,7 +21,7 @@ export class StockNewsService {
         '/news/' + tsCode)
         .pipe(
           tap(()=>{this.RefreshRequired.next()})
-        );;
+        );
   }
 
   get RefreshRequired()

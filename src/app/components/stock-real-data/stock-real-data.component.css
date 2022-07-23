@@ -4,7 +4,7 @@
 }
 .show-green
 {
-    color: yellowgreen;
+    color: green;
 }
 .show-black
 {
@@ -13,11 +13,21 @@
 
 .table1
 {
-    width: 480px;
+    width: 680px;
     font-size: small;
     table-layout: fixed;
 }
 .table1 .td
 {
-    width: 60px;
+    width: 85px;
+}
+
+.div1
+{
+    width: 680px;
+}
+
+.div1 img
+{
+    width: 100%;
 }
